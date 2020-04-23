@@ -11,7 +11,7 @@ HEIGHT = 480
 #--------------------------------------------------
 
 #--------------------------------------------------
-def menu2():
+def descripcion():
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -53,6 +53,16 @@ def menu2():
         screen.blit(button_libre_image,(670,100))
         screen.blit(button_start_image,(455,405))
 
+
+
+        if eventos.type == pygame.MOUSEMOTION:  # cuando paso por encima de easy muestra la desc
+            objetivo = pygame.mouse.get_pos()
+            if objetivo[0] < 300:
+                if objetivo[0] > 100:
+                    if objetivo[1] < 200:
+                        if objetivo[1] > 100:
+                            screen.blit(easy_description_image, (215, 255))
+
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # presiono easy
             if eventos.button == 1:
                 objetivo = eventos.pos
@@ -62,17 +72,14 @@ def menu2():
                             if objetivo[1] > 100:
                                 screen.blit(buttonpressed_easy_image, (100, 100))
 
-        if eventos.type == pygame.MOUSEBUTTONUP:   #suelto easy
-            if eventos.button == 1:
-                objetivo = eventos.pos
-                if objetivo[0] < 300:
-                    if objetivo[0] > 100:
+
+        if eventos.type == pygame.MOUSEMOTION:  #cuando paso por encima de medio muestra la desc
+                objetivo = pygame.mouse.get_pos()
+                if objetivo[0] < 585:
+                    if objetivo[0] > 385:
                         if objetivo[1] < 200:
                             if objetivo[1] > 100:
-                               screen.blit(easy_description_image, (215, 255))
-
-
-
+                                screen.blit(medio_description_image, (215, 255))
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # presiono medio
             if eventos.button == 1:
@@ -83,16 +90,14 @@ def menu2():
                             if objetivo[1] > 100:
                                 screen.blit(buttonpressed_medio_image, (385, 100))
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  #suelto medio
-            if eventos.button == 1:
-                objetivo = eventos.pos
-                if objetivo[0] < 585:
-                    if objetivo[0] > 385:
-                        if objetivo[1] < 200:
-                            if objetivo[1] > 100:
-                                screen.blit(medio_description_image, (215, 255))
 
-
+        if eventos.type == pygame.MOUSEMOTION:  # paso por encima de libre muestra la desc
+            objetivo = pygame.mouse.get_pos()
+            if objetivo[0] < 870:
+                if objetivo[0] > 670:
+                    if objetivo[1] < 200:
+                        if objetivo[1] > 100:
+                            screen.blit(libre_description_image, (215, 255))
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto libre
             if eventos.button == 1:
@@ -103,20 +108,10 @@ def menu2():
                             if objetivo[1] > 100:
                                 screen.blit(buttonpressed_libre_image, (670, 100))
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto libre
-            if eventos.button == 1:
-                objetivo = eventos.pos
-                if objetivo[0] < 870:
-                    if objetivo[0] > 670:
-                        if objetivo[1] < 200:
-                            if objetivo[1] > 100:
-                                screen.blit(libre_description_image, (215, 255))
 
+        if eventos.type == MOUSEMOTION:  # cambia el color de start cuando pasa por encima
 
-
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de libre cuando se presiona
-            if eventos.button == 1:
-                objetivo = eventos.pos
+                objetivo = pygame.mouse.get_pos()
                 if objetivo[0] < 505:
                     if objetivo[0] > 455:
                         if objetivo[1] < 455:
@@ -215,7 +210,7 @@ def load_image(filename, transparent=False):
 #--------------------------------------------------
 def main():
     menu()
-    menu2()
+    descripcion()
 
 
     return 0
