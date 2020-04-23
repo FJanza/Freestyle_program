@@ -1,7 +1,7 @@
 import sys, pygame
 from pygame.locals import *
 from tkinter import *
-
+import time
 
 WIDTH = 960
 HEIGHT = 480
@@ -11,7 +11,7 @@ HEIGHT = 480
 #--------------------------------------------------
 
 #--------------------------------------------------
-def seleccion():
+def menu2():
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
@@ -20,16 +20,22 @@ def seleccion():
     background_image = load_image('data/fondo.png')
 
     buttonpressed_easy_image = load_image('data/buttonpressed_easy.png')
-
     button_easy_image = load_image('data/button_easy.png')
+    easy_description_image = load_image('data/easy_description.png')
+
 
     buttonpressed_medio_image = load_image('data/buttonpressed_medio.png')
-
     button_medio_image = load_image('data/button_medio.png')
+    medio_description_image = load_image('data/medio_description.png')
+
 
     buttonpressed_libre_image = load_image('data/buttonpressed_libre.png')
-
     button_libre_image = load_image('data/button_libre.png')
+    libre_description_image = load_image('data/libre_description.png')
+
+
+    buttonpressed_start_image = load_image('data/buttonpressed_start .png')
+    button_start_image = load_image('data/button_start.png')
 
     while True:
 
@@ -45,9 +51,9 @@ def seleccion():
         screen.blit(button_easy_image, (100, 100))
         screen.blit(button_medio_image,(385, 100))
         screen.blit(button_libre_image,(670,100))
+        screen.blit(button_start_image,(455,405))
 
-
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de easy cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # presiono easy
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if objetivo[0] < 300:
@@ -56,18 +62,19 @@ def seleccion():
                             if objetivo[1] > 100:
                                 screen.blit(buttonpressed_easy_image, (100, 100))
 
-        if eventos.type == pygame.MOUSEBUTTONUP:
+        if eventos.type == pygame.MOUSEBUTTONUP:   #suelto easy
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if objetivo[0] < 300:
                     if objetivo[0] > 100:
                         if objetivo[1] < 200:
                             if objetivo[1] > 100:
-                                print("explicacion")
+                               screen.blit(easy_description_image, (215, 255))
 
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de medio cuando se presiona
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # presiono medio
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if objetivo[0] < 585:
@@ -76,17 +83,18 @@ def seleccion():
                             if objetivo[1] > 100:
                                 screen.blit(buttonpressed_medio_image, (385, 100))
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cambia el color de medio cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONUP:  #suelto medio
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if objetivo[0] < 685:
+                if objetivo[0] < 585:
                     if objetivo[0] > 385:
                         if objetivo[1] < 200:
                             if objetivo[1] > 100:
-                                print("explicacion")
+                                screen.blit(medio_description_image, (215, 255))
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de libre cuando se presiona
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto libre
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if objetivo[0] < 870:
@@ -95,14 +103,26 @@ def seleccion():
                             if objetivo[1] > 100:
                                 screen.blit(buttonpressed_libre_image, (670, 100))
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cambia el color de libre cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto libre
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if objetivo[0] < 870:
                     if objetivo[0] > 670:
                         if objetivo[1] < 200:
                             if objetivo[1] > 100:
-                                print("explicacion")
+                                screen.blit(libre_description_image, (215, 255))
+
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de libre cuando se presiona
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if objetivo[0] < 505:
+                    if objetivo[0] > 455:
+                        if objetivo[1] < 455:
+                            if objetivo[1] > 405:
+                                screen.blit(buttonpressed_start_image, (455, 405))
+
 
 
         pygame.display.flip()
@@ -163,7 +183,7 @@ def menu():
         if eventos.type == pygame.MOUSEBUTTONDOWN:  ##cambia el color de play cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if objetivo[0] < 910:
+                if objetivo[0] < 810:
                     if objetivo[0] > 610:
                         if objetivo[1] < 430:
                             if objetivo[1] > 330:
@@ -180,6 +200,9 @@ def menu():
 
         pygame.display.flip()
 #--------------------------------------------------
+
+
+#--------------------------------------------------
 def load_image(filename, transparent=False):
         try: image = pygame.image.load(filename)
         except pygame.error as message:
@@ -192,7 +215,7 @@ def load_image(filename, transparent=False):
 #--------------------------------------------------
 def main():
     menu()
-    seleccion()
+    menu2()
 
 
     return 0
