@@ -46,7 +46,7 @@ def options():
         screen.blit(Track_selection,(60,63))
         screen.blit(button_texto_image, (50, 150))
         screen.blit(Time_selection,(60,163))
-        screen.blit(button_exit_image, (50, 350))
+        screen.blit(button_exit_image, (50, 330))
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
             if eventos.button == 1:
@@ -69,7 +69,7 @@ def options():
 
         pygame.display.flip()
 #--------------------------------------------------
-def descripcion():
+def mode_election():
 
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -301,9 +301,9 @@ def main():
 
 
     menu()
-    descripcion()
+    mode_election()
 
-    modo=descripcion()
+    modo = mode_election()
 
 
     if modo == "easy":
