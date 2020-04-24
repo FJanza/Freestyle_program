@@ -202,7 +202,7 @@ def mode_election():
                         if objetivo[1] < 455:
                             if objetivo[1] > 405:
                                 options()
-                                return descripcion()
+                                return mode_election()
 
 
 
