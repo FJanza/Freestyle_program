@@ -1,4 +1,4 @@
-Gente
+﻿Gente
 humanidad
 humano
 persona
