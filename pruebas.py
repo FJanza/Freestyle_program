@@ -439,6 +439,9 @@ def mode_election():
     buttonpressed_options_image = load_image('data/buttonpressed_options .png')
     button_options_image = load_image('data/button_options.png')
 
+    button_exit_image = load_image('data/button_EXIT.png')
+    buttonpressed_exit_image = load_image('data/buttonpressed_EXIT.png')
+
     fuente_texto = pygame.font.SysFont("Swis721 Blk BT", 45, True)
 
     definition_easy = fuente_texto.render("En este modo de juego ", 0, (84, 83, 83), (157, 156, 156))
@@ -465,7 +468,7 @@ def mode_election():
         screen.blit(button_medio_image,(385, 100))
         screen.blit(button_libre_image,(670,100))
         screen.blit(button_options_image,(455,405))
-
+        screen.blit(button_exit_image, (50, 330))
 
 
         if eventos.type == pygame.MOUSEMOTION:  # cuando paso por encima de easy muestra la desc
@@ -544,8 +547,17 @@ def mode_election():
                     options()
                     return mode_election()
 
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
+                    screen.blit(buttonpressed_exit_image, (50, 330))
 
-
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
+                    sys.exit(0)
 
 
 
