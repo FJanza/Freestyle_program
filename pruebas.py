@@ -150,6 +150,7 @@ def timer_60_easy():
             if e.type == pygame.QUIT:
                 sys.exit(0)
 
+
             if counter == 61 or counter == 51 or counter == 41 or counter == 31 or counter == 21 or counter == 11:
                 rannum = randint(0, 1212)
 
