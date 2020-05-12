@@ -390,9 +390,6 @@ def options():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("freestyle")
     background_image = load_image('data/fondo.png')
-    button_exit_image = load_image('data/button_EXIT.png')
-    buttonpressed_exit_image = load_image('data/buttonpressed_EXIT.png')
-
 
 
 
@@ -415,18 +412,6 @@ def options():
         screen.blit(background_image, (0, 0))
         pygame.draw.rect(screen, (157, 156, 156), [50, 53, 300, 50], 0)
         screen.blit(Track_selection,(60,63))
-        screen.blit(button_exit_image, (50, 330))
-
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
-            if eventos.button == 1:
-                objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    screen.blit(buttonpressed_exit_image, (50, 330))
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
-            if eventos.button == 1:
-                objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    return
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de track selection cuando se presiona
             if eventos.button == 1:
@@ -454,15 +439,16 @@ def track_selection():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("freestyle")
     background_image = load_image('data/fondo.png')
-    button_exit_image = load_image('data/button_EXIT.png')
-    buttonpressed_exit_image = load_image('data/buttonpressed_EXIT.png')
+
 
     fuente_texto = pygame.font.SysFont("Swis721 Blk BT", 45, True)
     Track_selection = fuente_texto.render("Track Selection", 0, (84, 83, 83), (157, 156, 156))
     base_rap_0 = fuente_texto.render("Beat default", 0, (84, 83, 83), (157, 156, 156))
     base_rap_1 = fuente_texto.render("No Soul -90s OldSchool", 0, (84, 83, 83), (157, 156, 156))
     base_rap_2 = fuente_texto.render("Base de rap FreeStyle ", 0, (84, 83, 83), (157, 156, 156))
-
+    base_rap_0_pressed = fuente_texto.render("Beat default", 0, (157, 156, 156), (84, 83, 83))
+    base_rap_1_pressed = fuente_texto.render("No Soul -90s OldSchool", 0, (157, 156, 156), (84, 83, 83))
+    base_rap_2_pressed = fuente_texto.render("Base de rap FreeStyle ", 0, (157, 156, 156), (84, 83, 83))
 
 
     while True:
@@ -490,27 +476,18 @@ def track_selection():
         screen.blit(base_rap_2, (363, 314)) #base pendiente
         pygame.draw.rect(screen, (84, 83, 83), [355, 353, 500, 3], 0)
 
-        screen.blit(button_exit_image, (50, 330))
 
 
 
-
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
-            if eventos.button == 1:
-                objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    screen.blit(buttonpressed_exit_image, (50, 330))
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
-            if eventos.button == 1:
-                objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    return mode_election()
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 363 < objetivo[0] < 863 and 53 < objetivo[1] < 103:
-                    screen.blit(buttonpressed_exit_image, (50, 330))
+                    pygame.draw.rect(screen, (84, 83, 83), [355, 53, 500, 50], 0)
+                    screen.blit(base_rap_0_pressed, (355, 63))
+
+
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
             if eventos.button == 1:
                 objetivo = eventos.pos
@@ -522,7 +499,9 @@ def track_selection():
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 363 < objetivo[0] < 863 and 103 < objetivo[1] < 153:
-                    screen.blit(buttonpressed_exit_image, (50, 330))
+                    pygame.draw.rect(screen, (84, 83, 83), [355, 103, 500, 50], 0)
+                    screen.blit(base_rap_1_pressed, (355, 113))
+
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
             if eventos.button == 1:
                 objetivo = eventos.pos
@@ -533,7 +512,9 @@ def track_selection():
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 363 < objetivo[0] < 863 and 153 < objetivo[1] < 203:
-                    screen.blit(buttonpressed_exit_image, (50, 330))
+                    pygame.draw.rect(screen, (84, 83, 83), [355, 153, 500, 50], 0)
+                    screen.blit(base_rap_2_pressed, (355, 163))
+
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
             if eventos.button == 1:
                 objetivo = eventos.pos
