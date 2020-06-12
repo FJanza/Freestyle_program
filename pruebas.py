@@ -82,6 +82,15 @@ def music(path):
 
     if (path == 'data/base_rap_0.mp3'):
         pygame.mixer.music.play()
+#--------------------------------------------------        
+def previsualization_music(path):
+    pygame.mixer.music.load(path)
+
+    pygame.mixer.music.play()
+
+    pygame.time.delay(5000)
+
+    pygame.mixer.music.stop()    
 #--------------------------------------------------
 def timer_60_libre():
 
@@ -509,7 +518,8 @@ def track_selection():
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("freestyle")
     background_image = load_image('data/fondo.png')
-
+    icono_auriculares = load_image('data/previsualizer_music_icon.png')
+    icono_auriculares_pressed = load_image('data/previsualizer_music_icon_pressed.png')
 
     fuente_texto = pygame.font.SysFont("Swis721 Blk BT", 45, True)
     Track_selection = fuente_texto.render("Track Selection", 0, (84, 83, 83), (157, 156, 156))
@@ -523,10 +533,10 @@ def track_selection():
     base_rap_4_pressed = fuente_texto.render("Beat 4", 0, (157, 156, 156), (84, 83, 83))
 
 
+
     while True:
 
         for eventos in pygame.event.get():
-
             if eventos.type == QUIT:
                 sys.exit(0)
 
@@ -534,77 +544,176 @@ def track_selection():
         pygame.draw.rect(screen, (157, 156, 156), [50, 53, 300, 50], 0)
         pygame.draw.rect(screen, (157, 156, 156), [355, 53, 500, 377], 0)
         screen.blit(Track_selection, (60, 63))
-        pygame.draw.rect(screen, (84, 83, 83), [355, 53, 500, 3], 0)
+        pygame.draw.rect(screen, (84, 83, 83), [355, 53, 500, 3], 0) #linea separatoria horizontal
         screen.blit(base_rap_0, (363, 63))
-        pygame.draw.rect(screen, (84, 83, 83), [355, 103, 500, 3], 0)
+        pygame.draw.rect(screen, (84, 83, 83), [355, 103, 500, 3], 0) #linea separatoria horizontal
         screen.blit(base_rap_1, (363, 114))
-        pygame.draw.rect(screen, (84, 83, 83), [355, 153, 500, 3], 0)
+        pygame.draw.rect(screen, (84, 83, 83), [355, 153, 500, 3], 0) #linea separatoria horizontal
         screen.blit(base_rap_2, (363, 164))
-        pygame.draw.rect(screen, (84, 83, 83), [355, 203, 500, 3], 0)
+        pygame.draw.rect(screen, (84, 83, 83), [355, 203, 500, 3], 0) #linea separatoria horizontal 
         screen.blit(base_rap_4, (363, 214))
-        pygame.draw.rect(screen, (84, 83, 83), [355, 253, 500, 3], 0)
+        pygame.draw.rect(screen, (84, 83, 83), [355, 253, 500, 3], 0) #linea separatoria horizontal
         screen.blit(base_rap_1, (363, 264)) #base pendiente
-        pygame.draw.rect(screen, (84, 83, 83), [355, 303, 500, 3], 0)
+        pygame.draw.rect(screen, (84, 83, 83), [355, 303, 500, 3], 0) #linea separatoria horizontal
         screen.blit(base_rap_2, (363, 314)) #base pendiente
-        pygame.draw.rect(screen, (84, 83, 83), [355, 353, 500, 3], 0)
+        pygame.draw.rect(screen, (84, 83, 83), [355, 353, 500, 3], 0) #linea separatoria horizontal
+
+        pygame.draw.rect(screen, (84, 83, 83), [355, 430, 500, 3], 0) #linea separatoria horizontal
+        pygame.draw.rect(screen, (84, 83, 83), [355, 53, 3, 377], 0) #linea vertical de recuadro izquierdo
+        pygame.draw.rect(screen, (84, 83, 83), [852, 53, 3, 377], 0) #linea vertical de recuadro derecho
 
 
+
+        
+        screen.blit(icono_auriculares, (860, 53))
+        pygame.draw.rect(screen, (84, 83, 83), [860, 53, 51, 3], 0) #linea recuadro auricular
+        screen.blit(icono_auriculares, (860, 103))
+        pygame.draw.rect(screen, (84, 83, 83), [860, 103, 51, 3], 0) #linea recuadro auricular
+        screen.blit(icono_auriculares, (860, 153))
+        pygame.draw.rect(screen, (84, 83, 83), [860, 153, 51, 3], 0) #linea recuadro auricular
+        screen.blit(icono_auriculares, (860, 203))
+        pygame.draw.rect(screen, (84, 83, 83), [860, 203, 51, 3], 0) #linea recuadro auricular
+        screen.blit(icono_auriculares, (860, 253))
+        pygame.draw.rect(screen, (84, 83, 83), [860, 253, 51, 3], 0) #linea recuadro auricular
+        screen.blit(icono_auriculares, (860, 303))
+        pygame.draw.rect(screen, (84, 83, 83), [860, 303, 51, 3], 0) #linea recuadro auricular
+        pygame.draw.rect(screen, (84, 83, 83), [860, 353, 51, 3], 0) #linea recuadro auricular
+        pygame.draw.rect(screen, (84, 83, 83), [860, 53, 3, 303], 0) #linea de recuadro izquierdo
+        pygame.draw.rect(screen, (84, 83, 83), [910, 53, 3, 303], 0) #linea de recuadro derecho
+
+
+        screen.blit(icono_auriculares, (860, 367))
+        pygame.draw.rect(screen, (84, 83, 83), [860, 367, 51, 3], 0) #linea recuadro auricular
+        pygame.draw.rect(screen, (84, 83, 83), [860, 417, 51, 3], 0) #linea recuadro auricular
+        pygame.draw.rect(screen, (84, 83, 83), [860, 367, 3, 50], 0) #linea de recuadro izquierdo
+        pygame.draw.rect(screen, (84, 83, 83), [910, 367, 3, 50], 0) #linea de recuadro derecho
+    
+
+
+
+    
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de auris cuando se presiona
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 353 < objetivo[0] < 857 and 53 < objetivo[1] < 103:
+                    pygame.draw.rect(screen, (84, 83, 83), [355, 53, 500, 50], 0)
+                    screen.blit(base_rap_0_pressed, (355, 63)) 
+                    
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 353 < objetivo[0] < 857 and 53 < objetivo[1] < 103:
+                    return ('data/base_rap_0.mp3')
 
 
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 363 < objetivo[0] < 863 and 53 < objetivo[1] < 103:
-                    pygame.draw.rect(screen, (84, 83, 83), [355, 53, 500, 50], 0)
-                    screen.blit(base_rap_0_pressed, (355, 63))
-
-
+                if 860 < objetivo[0] < 910 and 53 < objetivo[1] < 103:
+                    screen.blit(icono_auriculares_pressed, (860,53)) 
+                    
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 363 < objetivo[0] < 863 and 53 < objetivo[1] < 103:
-                    return ('data/base_rap_0.mp3')
+                if 860 < objetivo[0] < 910 and 53 < objetivo[1] < 103:            
+                    pass     
+
+
+ 
 
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_1 cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 363 < objetivo[0] < 863 and 103 < objetivo[1] < 153:
+                if 353 < objetivo[0] < 857 and 103 < objetivo[1] < 153:
                     pygame.draw.rect(screen, (84, 83, 83), [355, 103, 500, 50], 0)
                     screen.blit(base_rap_1_pressed, (355, 113))
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 363 < objetivo[0] < 863 and 103 < objetivo[1] < 153:
+                if 353 < objetivo[0] < 857 and 103 < objetivo[1] < 153:
                     return ('data/base_rap_1.mp3')
+
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 103 < objetivo[1] < 153:
+                    screen.blit(icono_auriculares_pressed, (860,103)) 
+                    
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 103 < objetivo[1] < 153:
+                    pass
+
+
+
+ 
+
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 363 < objetivo[0] < 863 and 153 < objetivo[1] < 203:
+                if 353 < objetivo[0] < 857 and 153 < objetivo[1] < 203:
                     pygame.draw.rect(screen, (84, 83, 83), [355, 153, 500, 50], 0)
                     screen.blit(base_rap_2_pressed, (355, 163))
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 363 < objetivo[0] < 863 and 153 < objetivo[1] < 203:
+                if 353 < objetivo[0] < 857 and 153 < objetivo[1] < 203:
                     return ('data/base_rap_2.mp3')
+
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 153 < objetivo[1] < 203:
+                    screen.blit(icono_auriculares_pressed, (860,153)) 
+                    
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 153 < objetivo[1] < 203:
+                      pass  
+                    
+
+
+
+
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 363 < objetivo[0] < 863 and 203 < objetivo[1] < 253:
+                if 353 < objetivo[0] < 857 and 203 < objetivo[1] < 253:
                     pygame.draw.rect(screen, (84, 83, 83), [355, 203, 500, 50], 0)
                     screen.blit(base_rap_4_pressed, (355, 213))
+
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 363 < objetivo[0] < 863 and 203 < objetivo[1] < 253:
+                if 353 < objetivo[0] < 857 and 203 < objetivo[1] < 253:
                     return ('data/base_rap_4.mp3')
+        
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 203 < objetivo[1] < 253:
+                    screen.blit(icono_auriculares_pressed, (860,203)) 
+                    
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 253 < objetivo[1] < 303:
+                    pass
 
 
 
