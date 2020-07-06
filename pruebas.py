@@ -12,7 +12,7 @@ HEIGHT = 480
 
 
 
-def timer_libre():
+def timer_libre(tiempo_elegido):
     tiempo_elegido = 120
 
     pygame.init()
@@ -84,13 +84,228 @@ def music(path):
         pygame.mixer.music.play()
 #--------------------------------------------------        
 def previsualization_music(path):
-    pygame.mixer.music.load(path)
+    music(path)
 
-    pygame.mixer.music.play()
+    clock = pygame.time.Clock()
+    counter = 10
+    pygame.time.set_timer(pygame.USEREVENT, 1000)
+   
 
-    pygame.time.delay(5000)
+     
 
-    pygame.mixer.music.stop()    
+    while counter != 0:
+
+        
+        for e in pygame.event.get():
+            if e.type == pygame.QUIT:
+                sys.exit(0)
+
+            if e.type == pygame.USEREVENT:
+                counter -= 1
+                if counter == 0:
+                    pygame.mixer.music.stop()
+                    return(track_selection)
+                    
+                    
+                    
+
+        else:            
+            clock.tick(60)
+            continue
+        break           
+#--------------------------------------------------
+def timer_120_libre():
+
+
+    pygame.init()
+
+    music(options())
+
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("freestyle")
+    background_image = load_image('data/fondo.png')
+    fuente_texto = pygame.font.SysFont("Swis721 Blk BT", 60, True)
+
+    clock = pygame.time.Clock()
+
+    counter, text = 61, '61'.rjust(3)
+    pygame.time.set_timer(pygame.USEREVENT, 1000)
+    font = pygame.font.SysFont("Swis721 Blk BT", 80, True)
+
+
+    while True:
+        screen.blit(background_image, (0, 0))
+
+
+        for e in pygame.event.get():
+            if e.type == pygame.QUIT:
+                sys.exit(0)
+
+            if e.type == pygame.USEREVENT:
+                counter -= 1
+                text = str(counter).rjust(3)
+                if counter == 0:
+                    return mode_libre()
+
+
+
+
+            if counter == 121:
+                palabras_text = fuente_texto.render('MODO LIBRE', 0, (84, 83, 83), (157, 156, 156))
+                x_centrada = 320
+
+
+
+
+        else:
+            pygame.draw.circle(screen, (34,50,100), (480, 200), 70, 0)  #circulo azul
+            pygame.draw.circle(screen,(247,224,159),(480,200),60, 0)    #circulo blanco
+            pygame.draw.rect(screen, (34, 50, 100), [280,385, 400, 75], 0)
+            pygame.draw.rect(screen, (157, 156, 156), [290, 392, 380, 60], 0)
+
+
+
+
+            screen.blit(palabras_text, (x_centrada, 400))
+            screen.blit(font.render(text, True, (0, 0, 0)), (423, 175))
+            pygame.display.flip()
+            clock.tick(60)
+            continue
+        break
+# --------------------------------------------------
+def timer_120_medio():
+    pygame.init()
+
+    music(options())
+
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("freestyle")
+    background_image = load_image('data/fondo.png')
+    fuente_texto = pygame.font.SysFont("Swis721 Blk BT", 60, True)
+    palabras = reco_palabras('data/palabras.txt')
+
+    clock = pygame.time.Clock()
+
+    counter, text = 121, '121'.rjust(3)
+    pygame.time.set_timer(pygame.USEREVENT, 1000)
+    font = pygame.font.SysFont("Swis721 Blk BT", 80, True)
+
+    while True:
+
+        screen.blit(background_image, (0, 0))
+
+        for e in pygame.event.get():
+            if e.type == pygame.QUIT:
+                sys.exit(0)
+
+            if counter == 121 or counter == 111 or counter == 101 or counter == 91 or counter == 81 or counter == 71:
+                rannum = randint(0, 1212)
+
+            if counter == 116 or counter == 106 or counter == 96 or counter == 86 or counter == 76 or counter == 66:
+                rannum = randint(0, 1212)
+
+            if counter == 61 or counter == 51 or counter == 41 or counter == 31 or counter == 21 or counter == 11:
+                rannum = randint(0, 1212)
+
+            if counter == 56 or counter == 46 or counter == 36 or counter == 26 or counter == 16 or counter == 6:
+                rannum = randint(0, 1212)
+
+            if e.type == pygame.USEREVENT:
+                counter -= 1
+                text = str(counter).rjust(3)
+                if counter == 0:
+                    return mode_medio()
+
+            if counter == 121:
+                palabras_text = fuente_texto.render('YA ARRANCA', 0, (84, 83, 83), (157, 156, 156))
+                x_centrada = 320
+            if counter % 5 == 0:
+                x_centrada = 480 - (((len(palabras[rannum])) / 2) * 25)
+                palabras_text = fuente_texto.render(palabras[rannum], 0, (84, 83, 83), (157, 156, 156))
+
+
+
+
+        else:
+            pygame.draw.circle(screen, (34, 50, 100), (480, 200), 70, 0)
+            pygame.draw.circle(screen, (247, 224, 159), (480, 200), 60, 0)
+            pygame.draw.rect(screen, (34, 50, 100), [280, 385, 400, 75], 0)
+            pygame.draw.rect(screen, (157, 156, 156), [290, 392, 380, 60], 0)
+
+            screen.blit(palabras_text, (x_centrada, 400))
+            screen.blit(font.render(text, True, (0, 0, 0)), (423, 175))
+            pygame.display.flip()
+            clock.tick(60)
+            continue
+        break
+#--------------------------------------------------
+def timer_120_easy():
+    pygame.init()
+
+    music(options())
+
+
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption("freestyle")
+    background_image = load_image('data/fondo.png')
+    fuente_texto = pygame.font.SysFont("Swis721 Blk BT", 60, True)
+    palabras = reco_palabras('data/palabras.txt')
+
+    clock = pygame.time.Clock()
+
+    counter, text = 121, '121'.rjust(3)
+    pygame.time.set_timer(pygame.USEREVENT, 1000)
+    font = pygame.font.SysFont("Swis721 Blk BT", 80, True)
+
+    while True:
+
+        screen.blit(background_image, (0, 0))
+
+
+        for e in pygame.event.get():
+            if e.type == pygame.QUIT:
+                sys.exit(0)
+
+            if counter == 121 or counter == 111 or counter == 101 or counter == 91 or counter == 81 or counter == 71:
+                rannum = randint(0, 1212)
+
+            if counter == 61 or counter == 51 or counter == 41 or counter == 31 or counter == 21 or counter == 11:
+                rannum = randint(0, 1212)
+
+            if e.type == pygame.USEREVENT:
+                counter -= 1
+                text = str(counter).rjust(3)
+                if counter == 0:
+                    return mode_easy()
+
+
+
+
+            if counter == 121:
+                palabras_text = fuente_texto.render('YA ARRANCA', 0, (84, 83, 83), (157, 156, 156))
+                x_centrada = 320
+            if counter % 10 == 0:
+                x_centrada = 480 - (((len(palabras[rannum])) / 2) * 25)
+                palabras_text = fuente_texto.render(palabras[rannum], 0, (84, 83, 83), (157, 156, 156))
+
+
+
+
+        else:
+            pygame.draw.circle(screen, (34,50,100), (480, 200), 70, 0)
+            pygame.draw.circle(screen,(247,224,159),(480,200),60, 0)
+            pygame.draw.rect(screen, (34, 50, 100), [280,385, 400, 75], 0)
+            pygame.draw.rect(screen, (157, 156, 156), [290, 392, 380, 60], 0)
+
+
+
+
+            screen.blit(palabras_text, (x_centrada, 400))
+            screen.blit(font.render(text, True, (0, 0, 0)), (423, 175))
+            pygame.display.flip()
+            clock.tick(60)
+            continue
+        break
 #--------------------------------------------------
 def timer_60_libre():
 
@@ -278,7 +493,7 @@ def timer_60_easy():
         break
 #--------------------------------------------------
 def mode_libre():
-    pygame.mixer.music.stop()  # para la musica que este sonando, por si acaso se exede del tiempo
+    pygame.mixer.music.stop() #para la musica que este sonando, por si acaso se exede del tiempo
 
     pygame.init()
 
@@ -287,13 +502,15 @@ def mode_libre():
     pygame.display.set_caption("freestyle")
     background_image = load_image('data/fondo.png')
 
-    button_exit_image = load_image('data/button_EXIT.png')
-    buttonpressed_exit_image = load_image('data/buttonpressed_EXIT.png')
+    button_back_image = load_image('data/button_back.png')
+    buttonpressed_back_image = load_image('data/button_back_pressed.png')
 
-    buttonpressed_start_image = load_image('data/buttonpressed_start .png')
-    button_start_image = load_image('data/button_start .png')
+    buttonpressed_start_image = load_image('data/button start_pressed.png')
+    button_start_image = load_image('data/button_start.png')
 
-
+    fuente_texto_mode = pygame.font.SysFont("Swis721 Blk BT", 53, True)
+    segundos_60 = fuente_texto_mode.render("60 segundos", 0, (84, 83, 83), (157, 156, 156))
+    segundos_120 = fuente_texto_mode.render("120 segundos", 0, (84, 83, 83), (157, 156, 156))
     while True:
 
         for eventos in pygame.event.get():
@@ -302,31 +519,52 @@ def mode_libre():
             if eventos.type == QUIT:
                  sys.exit(0)
 
+
         screen.blit(background_image, (0, 0))
-        screen.blit(button_exit_image, (50, 330))
-        screen.blit(button_start_image,(455,205))
+        screen.blit(button_back_image, (50, 330))
+        screen.blit(button_start_image,(50,160)) #start de 60 seg
+        screen.blit(button_start_image,(530,160)) #start de 120 seg
+        pygame.draw.rect(screen, (157, 156, 156), [140, 160, 300, 80], 0)
+        screen.blit(segundos_60, (150, 180))
+        pygame.draw.rect(screen, (157, 156, 156), [620, 160, 300, 80], 0)
+        screen.blit(segundos_120, (630, 180))
 
-
-
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start_60
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 455 < objetivo[0] < 505 and 205 < objetivo[1] < 455:
-                    screen.blit(buttonpressed_start_image, (455, 205))
-                    timer_libre()
+                if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
+                    screen.blit(buttonpressed_start_image, (50, 160))
+                    
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start
+        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start_60
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 455 < objetivo[0] < 505 and 205 < objetivo[1] < 455:
+                if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
+                    timer_60_libre()
                     return mode_libre()
+
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start_120
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
+                    screen.blit(buttonpressed_start_image, (455, 205))
+                    
+
+        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start_120
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
+                    timer_120_libre()
+                    return mode_libre()            
 
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    screen.blit(buttonpressed_exit_image, (50, 330))
+                    screen.blit(buttonpressed_back_image, (50, 330))
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
             if eventos.button == 1:
@@ -337,7 +575,7 @@ def mode_libre():
         pygame.display.flip()
 #--------------------------------------------------
 def mode_medio():
-    pygame.mixer.music.stop()  # para la musica que este sonando, por si acaso se exede del tiempo
+    pygame.mixer.music.stop() #para la musica que este sonando, por si acaso se exede del tiempo
 
     pygame.init()
 
@@ -346,13 +584,15 @@ def mode_medio():
     pygame.display.set_caption("freestyle")
     background_image = load_image('data/fondo.png')
 
-    button_exit_image = load_image('data/button_EXIT.png')
-    buttonpressed_exit_image = load_image('data/buttonpressed_EXIT.png')
+    button_back_image = load_image('data/button_back.png')
+    buttonpressed_back_image = load_image('data/button_back_pressed.png')
 
-    buttonpressed_start_image = load_image('data/buttonpressed_start .png')
-    button_start_image = load_image('data/button_start .png')
+    buttonpressed_start_image = load_image('data/button start_pressed.png')
+    button_start_image = load_image('data/button_start.png')
 
-
+    fuente_texto_mode = pygame.font.SysFont("Swis721 Blk BT", 53, True)
+    segundos_60 = fuente_texto_mode.render("60 segundos", 0, (84, 83, 83), (157, 156, 156))
+    segundos_120 = fuente_texto_mode.render("120 segundos", 0, (84, 83, 83), (157, 156, 156))
     while True:
 
         for eventos in pygame.event.get():
@@ -361,31 +601,52 @@ def mode_medio():
             if eventos.type == QUIT:
                  sys.exit(0)
 
+
         screen.blit(background_image, (0, 0))
-        screen.blit(button_exit_image, (50, 330))
-        screen.blit(button_start_image,(455,205))
+        screen.blit(button_back_image, (50, 330))
+        screen.blit(button_start_image,(50,160)) #start de 60 seg
+        screen.blit(button_start_image,(530,160)) #start de 120 seg
+        pygame.draw.rect(screen, (157, 156, 156), [140, 160, 300, 80], 0)
+        screen.blit(segundos_60, (150, 180))
+        pygame.draw.rect(screen, (157, 156, 156), [620, 160, 300, 80], 0)
+        screen.blit(segundos_120, (630, 180))
 
-
-
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start_60
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 455 < objetivo[0] < 505 and 205 < objetivo[1] < 455:
-                    screen.blit(buttonpressed_start_image, (455, 205))
+                if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
+                    screen.blit(buttonpressed_start_image, (50, 160))
+                    
+
+        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start_60
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
                     timer_60_medio()
+                    return mode_medio()
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start_120
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 455 < objetivo[0] < 505 and 205 < objetivo[1] < 455:
-                    return mode_medio()
+                if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
+                    screen.blit(buttonpressed_start_image, (455, 205))
+                    
+
+        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start_120
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
+                    timer_120_medio()
+                    return mode_medio()            
 
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    screen.blit(buttonpressed_exit_image, (50, 330))
+                    screen.blit(buttonpressed_back_image, (50, 330))
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
             if eventos.button == 1:
@@ -406,13 +667,15 @@ def mode_easy():
     pygame.display.set_caption("freestyle")
     background_image = load_image('data/fondo.png')
 
-    button_exit_image = load_image('data/button_EXIT.png')
-    buttonpressed_exit_image = load_image('data/buttonpressed_EXIT.png')
+    button_back_image = load_image('data/button_back.png')
+    buttonpressed_back_image = load_image('data/button_back_pressed.png')
 
-    buttonpressed_start_image = load_image('data/buttonpressed_start .png')
-    button_start_image = load_image('data/button_start .png')
+    buttonpressed_start_image = load_image('data/button start_pressed.png')
+    button_start_image = load_image('data/button_start.png')
 
-
+    fuente_texto_mode = pygame.font.SysFont("Swis721 Blk BT", 53, True)
+    segundos_60 = fuente_texto_mode.render("60 segundos", 0, (84, 83, 83), (157, 156, 156))
+    segundos_120 = fuente_texto_mode.render("120 segundos", 0, (84, 83, 83), (157, 156, 156))
     while True:
 
         for eventos in pygame.event.get():
@@ -421,31 +684,52 @@ def mode_easy():
             if eventos.type == QUIT:
                  sys.exit(0)
 
+
         screen.blit(background_image, (0, 0))
-        screen.blit(button_exit_image, (50, 330))
-        screen.blit(button_start_image,(455,205))
+        screen.blit(button_back_image, (50, 330))
+        screen.blit(button_start_image,(50,160)) #start de 60 seg
+        screen.blit(button_start_image,(530,160)) #start de 120 seg
+        pygame.draw.rect(screen, (157, 156, 156), [140, 160, 300, 80], 0)
+        screen.blit(segundos_60, (150, 180))
+        pygame.draw.rect(screen, (157, 156, 156), [620, 160, 300, 80], 0)
+        screen.blit(segundos_120, (630, 180))
 
-
-
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start_60
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 455 < objetivo[0] < 505 and 205 < objetivo[1] < 455:
-                    screen.blit(buttonpressed_start_image, (455, 205))
+                if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
+                    screen.blit(buttonpressed_start_image, (50, 160))
+                    
+
+        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start_60
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
                     timer_60_easy()
+                    return mode_easy()
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # apreto start_120
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 455 < objetivo[0] < 505 and 205 < objetivo[1] < 455:
-                    return mode_easy()
+                if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
+                    screen.blit(buttonpressed_start_image, (455, 205))
+                    
+
+        if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start_120
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
+                    timer_120_easy()
+                    return mode_easy()            
 
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    screen.blit(buttonpressed_exit_image, (50, 330))
+                    screen.blit(buttonpressed_back_image, (50, 330))
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
             if eventos.button == 1:
@@ -503,11 +787,6 @@ def options():
                 objetivo = eventos.pos
                 if 50 < objetivo[0] < 350 and 53 < objetivo[1] < 103:
                     return track_selection()
-
-
-
-
-
 
 
         pygame.display.flip()
@@ -607,17 +886,18 @@ def track_selection():
 
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 53 < objetivo[1] < 103:
                     screen.blit(icono_auriculares_pressed, (860,53)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 53 < objetivo[1] < 103:            
-                    pass     
+                    previsualization_music('data/base_rap_0.mp3')
+                       
 
 
  
@@ -638,13 +918,13 @@ def track_selection():
 
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 103 < objetivo[1] < 153:
                     screen.blit(icono_auriculares_pressed, (860,103)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 103 < objetivo[1] < 153:
@@ -670,13 +950,13 @@ def track_selection():
 
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 153 < objetivo[1] < 203:
                     screen.blit(icono_auriculares_pressed, (860,153)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 153 < objetivo[1] < 203:
@@ -703,13 +983,13 @@ def track_selection():
         
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_0 cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 203 < objetivo[1] < 253:
                     screen.blit(icono_auriculares_pressed, (860,203)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 253 < objetivo[1] < 303:
