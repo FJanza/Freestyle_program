@@ -43,7 +43,7 @@ def timer_libre(tiempo_elegido):
                 counter -= 1
                 text = str(counter).rjust(3)
                 if counter == 0:
-                    return mode_libre()
+                    return #retorna a la funcion mode_libre
 
 
 
@@ -91,9 +91,7 @@ def previsualization_music(path):
     pygame.time.set_timer(pygame.USEREVENT, 1000)
    
 
-     
-
-    while counter != 0:
+    while True:
 
         
         for e in pygame.event.get():
@@ -104,10 +102,7 @@ def previsualization_music(path):
                 counter -= 1
                 if counter == 0:
                     pygame.mixer.music.stop()
-                    return(track_selection)
-                    
-                    
-                    
+                    return #este return vuelve a la funcion Track_selection
 
         else:            
             clock.tick(60)
@@ -145,7 +140,7 @@ def timer_120_libre():
                 counter -= 1
                 text = str(counter).rjust(3)
                 if counter == 0:
-                    return mode_libre()
+                    return # retorna a la funcion  mode_libre
 
 
 
@@ -214,7 +209,7 @@ def timer_120_medio():
                 counter -= 1
                 text = str(counter).rjust(3)
                 if counter == 0:
-                    return mode_medio()
+                    return #retorna al mode_medio
 
             if counter == 121:
                 palabras_text = fuente_texto.render('YA ARRANCA', 0, (84, 83, 83), (157, 156, 156))
@@ -276,7 +271,7 @@ def timer_120_easy():
                 counter -= 1
                 text = str(counter).rjust(3)
                 if counter == 0:
-                    return mode_easy()
+                    return #este return vuelve a la funcion mode_easy
 
 
 
@@ -426,10 +421,10 @@ def timer_60_medio():
             continue
         break
 #--------------------------------------------------
-def timer_60_easy():
+def timer_60_easy(base):
     pygame.init()
 
-    music(options())
+    music(base)
 
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -461,7 +456,7 @@ def timer_60_easy():
                 counter -= 1
                 text = str(counter).rjust(3)
                 if counter == 0:
-                    return mode_easy()
+                    return #este return vuelve a la funcion mode_easy
 
 
 
@@ -469,6 +464,7 @@ def timer_60_easy():
             if counter == 61:
                 palabras_text = fuente_texto.render('YA ARRANCA', 0, (84, 83, 83), (157, 156, 156))
                 x_centrada = 320
+
             if counter % 10 == 0:
                 x_centrada = 480 - (((len(palabras[rannum])) / 2) * 25)
                 palabras_text = fuente_texto.render(palabras[rannum], 0, (84, 83, 83), (157, 156, 156))
@@ -541,7 +537,7 @@ def mode_libre():
                 objetivo = eventos.pos
                 if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
                     timer_60_libre()
-                    return mode_libre()
+                    
 
 
 
@@ -557,20 +553,20 @@ def mode_libre():
                 objetivo = eventos.pos
                 if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
                     timer_120_libre()
-                    return mode_libre()            
+                                
 
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
+                if 50 < objetivo[0] < 250 and 330 < objetivo[1] < 430:
                     screen.blit(buttonpressed_back_image, (50, 330))
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    return mode_election()
+                if 50 < objetivo[0] < 250 and 330 < objetivo[1] < 430:
+                    return  #retorna a la funcion mode_election
 
         pygame.display.flip()
 #--------------------------------------------------
@@ -623,7 +619,7 @@ def mode_medio():
                 objetivo = eventos.pos
                 if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
                     timer_60_medio()
-                    return mode_medio()
+                    
 
 
 
@@ -639,20 +635,20 @@ def mode_medio():
                 objetivo = eventos.pos
                 if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
                     timer_120_medio()
-                    return mode_medio()            
+                                
 
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
+                if 50 < objetivo[0] < 250 and 330 < objetivo[1] < 430:
                     screen.blit(buttonpressed_back_image, (50, 330))
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    return mode_election()
+                if 50 < objetivo[0] < 250 and 330 < objetivo[1] < 430:
+                    return   #este return vuelve a la funcion mode_election
 
         pygame.display.flip()
 #--------------------------------------------------
@@ -705,8 +701,7 @@ def mode_easy():
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 50 < objetivo[0] < 130 and 160 < objetivo[1] < 240:
-                    timer_60_easy()
-                    return mode_easy()
+                    return '60'
 
 
 
@@ -714,28 +709,28 @@ def mode_easy():
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
-                    screen.blit(buttonpressed_start_image, (455, 205))
+                    screen.blit(buttonpressed_start_image, (530, 160))
                     
 
         if eventos.type == pygame.MOUSEBUTTONUP:  # suelto start_120
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 530 < objetivo[0] < 610 and 160 < objetivo[1] < 240:
-                    timer_120_easy()
-                    return mode_easy()            
+                    return '120'           
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de back cuando se presiona
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
+                if 50 < objetivo[0] < 250 and 330 < objetivo[1] < 430:
                     screen.blit(buttonpressed_back_image, (50, 330))
+                    
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar sale del juego
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar vuelve al mode_election
             if eventos.button == 1:
                 objetivo = eventos.pos
-                if 50 < objetivo[0] < 350 and 330 < objetivo[1] < 430:
-                    return mode_election()
+                if 50 < objetivo[0] < 250 and 330 < objetivo[1] < 430:
+                    return   'back'
 
         pygame.display.flip()
 #--------------------------------------------------
@@ -786,7 +781,7 @@ def options():
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 50 < objetivo[0] < 350 and 53 < objetivo[1] < 103:
-                    return track_selection()
+                    return 
 
 
         pygame.display.flip()
@@ -871,14 +866,14 @@ def track_selection():
 
 
     
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de auris cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de auris cuando se presiona TECLA 1
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 353 < objetivo[0] < 857 and 53 < objetivo[1] < 103:
                     pygame.draw.rect(screen, (84, 83, 83), [355, 53, 500, 50], 0)
                     screen.blit(base_rap_0_pressed, (355, 63)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida TECLA 1
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 353 < objetivo[0] < 857 and 53 < objetivo[1] < 103:
@@ -886,31 +881,31 @@ def track_selection():
 
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer TECLA 1
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 53 < objetivo[1] < 103:
                     screen.blit(icono_auriculares_pressed, (860,53)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer TECLA 1
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 53 < objetivo[1] < 103:            
-                    previsualization_music('data/base_rap_0.mp3')
+                    return 'PV_1'
                        
 
 
  
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_1 cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_1 cuando se presiona TECLA 2
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 353 < objetivo[0] < 857 and 103 < objetivo[1] < 153:
                     pygame.draw.rect(screen, (84, 83, 83), [355, 103, 500, 50], 0)
                     screen.blit(base_rap_1_pressed, (355, 113))
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida TECLA 2
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 353 < objetivo[0] < 857 and 103 < objetivo[1] < 153:
@@ -918,31 +913,31 @@ def track_selection():
 
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer TECLA 2
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 103 < objetivo[1] < 153:
                     screen.blit(icono_auriculares_pressed, (860,103)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer TECLA 2
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 103 < objetivo[1] < 153:
-                    pass
+                    return 'PV_2'
 
 
 
  
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona TECLA 3
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 353 < objetivo[0] < 857 and 153 < objetivo[1] < 203:
                     pygame.draw.rect(screen, (84, 83, 83), [355, 153, 500, 50], 0)
                     screen.blit(base_rap_2_pressed, (355, 163))
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida TECLA 3
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 353 < objetivo[0] < 857 and 153 < objetivo[1] < 203:
@@ -950,24 +945,24 @@ def track_selection():
 
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer TECLA 3
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 153 < objetivo[1] < 203:
                     screen.blit(icono_auriculares_pressed, (860,153)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer TECLA 3
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 153 < objetivo[1] < 203:
-                      pass  
+                      return 'PV_3'
                     
 
 
 
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona TECLA 4
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 353 < objetivo[0] < 857 and 203 < objetivo[1] < 253:
@@ -975,27 +970,86 @@ def track_selection():
                     screen.blit(base_rap_4_pressed, (355, 213))
 
 
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida TECLA 4
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 353 < objetivo[0] < 857 and 203 < objetivo[1] < 253:
-                    return ('data/base_rap_4.mp3')
+                    return ('data/base_rap_3.mp3')
         
 
 
-        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer TECLA 4
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 203 < objetivo[1] < 253:
                     screen.blit(icono_auriculares_pressed, (860,203)) 
                     
-        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer TECLA 4
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 203 < objetivo[1] < 253:
+                    return 'PV_4'
+
+
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona TECLA 5
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 353 < objetivo[0] < 857 and 253 < objetivo[1] < 303:
+                    pygame.draw.rect(screen, (84, 83, 83), [355, 203, 500, 50], 0)
+                    screen.blit(base_rap_4_pressed, (355, 213)) #CAMBIAR POR NOMBRE DE BASE 5 PRESIONADA
+
+
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida TECLA 5
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 353 < objetivo[0] < 857 and 253 < objetivo[1] < 303:
+                    return ('data/base_rap_4.mp3')
+        
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer TECLA 5
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 253 < objetivo[1] < 303:
-                    pass
+                    screen.blit(icono_auriculares_pressed, (860,253)) 
+                    
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer TECLA 5
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 253 < objetivo[1] < 303:
+                    return 'PV_5'
 
 
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona TECLA 6
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 353 < objetivo[0] < 857 and 303 < objetivo[1] < 353:
+                    pygame.draw.rect(screen, (84, 83, 83), [355, 203, 500, 50], 0)
+                    screen.blit(base_rap_4_pressed, (355, 213)) #CAMBIAR POR NOMBRE DE BASE 6 PRESIONADA
+
+
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se deja de presionar guarda la opcion elegida TECLA 6
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 353 < objetivo[0] < 857 and 303 < objetivo[1] < 353:
+                    return ('data/base_rap_5.mp3')
+        
+
+
+        if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color del audio_previsualizaer TECLA 6
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 303 < objetivo[1] < 353:
+                    screen.blit(icono_auriculares_pressed, (860,303)) 
+                    
+        if eventos.type == pygame.MOUSEBUTTONUP:  # cuando se suelta audio_previsualizaer TECLA 6
+            if eventos.button == 1:
+                objetivo = eventos.pos
+                if 860 < objetivo[0] < 910 and 303 < objetivo[1] < 353:
+                    return 'PV_6'
 
 
         pygame.display.flip()
@@ -1070,7 +1124,7 @@ def mode_election():
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 100 < objetivo[0] < 300 and 30 < objetivo[1] < 130:
-                    mode_easy()
+                    return('easy')
 
 
         if eventos.type == pygame.MOUSEMOTION:  #cuando paso por encima de medio muestra la desc
@@ -1090,7 +1144,7 @@ def mode_election():
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 385 < objetivo[0] < 585 and 30 < objetivo[1] < 130:
-                    mode_medio()
+                    return('medio')
 
 
         if eventos.type == pygame.MOUSEMOTION:  # paso por encima de libre muestra la desc
@@ -1110,7 +1164,7 @@ def mode_election():
             if eventos.button == 1:
                 objetivo = eventos.pos
                 if 670 < objetivo[0] < 870 and 30 < objetivo[1] < 130:
-                    mode_libre()
+                    return('libre')
 
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de exit cuando se presiona
             if eventos.button == 1:
@@ -1202,7 +1256,57 @@ def load_image(filename, transparent=False):
 #--------------------------------------------------
 def main():
     menu()
-    mode_election()
+    while True:
+        mode = mode_election()
+
+
+        if mode == 'easy':
+            while True:    
+                easy = mode_easy()
+
+                if easy == 'back': #si preciona la opcion de back 
+                    break
+                
+                options()
+                
+                if easy == '60': #si preciona la opcion de 60 
+                    while True:
+                       
+                          #entra en track selection
+                        base = track_selection()
+                        
+                        if base == 'PV_1': #si preciona Previsualization 1
+                            previsualization_music('data/base_rap_0.mp3')
+                        if base == 'PV_2': #si preciona Previsualization 2
+                            previsualization_music('data/base_rap_1.mp3')   
+                        if base == 'PV_3': #si preciona Previsualization 3
+                            previsualization_music('data/base_rap_2.mp3')
+                        if base == 'PV_4': #si preciona Previsualization 2
+                            previsualization_music('data/base_rap_3.mp3')   
+                        if base == 'PV_5': #si preciona Previsualization 3
+                            previsualization_music('data/base_rap_4.mp3')    
+                        if base == 'PV_6': #si preciona Previsualization 3
+                            previsualization_music('data/base_rap_5.mp3')   
+                        #falta la del usuario       
+
+
+                        if base != 'PV_1' and base != 'PV_2' and base != 'PV_3'and base != 'PV_4' and base != 'PV_5'and base != 'PV_6' and base != 'PV_7':
+                            timer_60_easy(base) #cuando hay una base pone el beat y salen las plabras 
+                            break
+
+                if easy == '120': #si preciona la opcion de 1200 
+                    timer_120_easy()
+
+                
+
+
+        if mode == 'medio':
+            mode_medio()
+
+
+        if mode == 'libre':    
+            mode_libre()
+
     return 0
 #--------------------------------------------------
 if __name__ == '__main__':
