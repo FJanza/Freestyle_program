@@ -216,7 +216,7 @@ def timer_120_medio():
                 x_centrada = 320
             if counter % 5 == 0:
                 x_centrada = 480 - (((len(palabras[rannum])) / 2) * 25)
-                palabras_text = fuente_texto.render(palabras[rannum], 0, (84, 83, 83), (157, 156, 156))
+                palabras_text = fuente_texto.render(palabras[rannum].capitalize(), 0, (84, 83, 83), (157, 156, 156))
 
 
 
@@ -281,7 +281,7 @@ def timer_120_easy():
                 x_centrada = 320
             if counter % 10 == 0:
                 x_centrada = 480 - (((len(palabras[rannum])) / 2) * 25)
-                palabras_text = fuente_texto.render(palabras[rannum], 0, (84, 83, 83), (157, 156, 156))
+                palabras_text = fuente_texto.render(palabras[rannum].capitalize(), 0, (84, 83, 83), (157, 156, 156))
 
 
 
@@ -403,7 +403,7 @@ def timer_60_medio():
                 x_centrada = 320
             if counter % 5 == 0:
                 x_centrada = 480 - (((len(palabras[rannum])) / 2) * 25)
-                palabras_text = fuente_texto.render(palabras[rannum], 0, (84, 83, 83), (157, 156, 156))
+                palabras_text = fuente_texto.render(palabras[rannum].capitalize(), 0, (84, 83, 83), (157, 156, 156))
 
 
 
@@ -467,7 +467,7 @@ def timer_60_easy(base):
 
             if counter % 10 == 0:
                 x_centrada = 480 - (((len(palabras[rannum])) / 2) * 25)
-                palabras_text = fuente_texto.render(palabras[rannum], 0, (84, 83, 83), (157, 156, 156))
+                palabras_text = fuente_texto.render(palabras[rannum].capitalize(), 0, (84, 83, 83), (157, 156, 156))
 
 
 
@@ -739,6 +739,9 @@ def reco_palabras(ruta):
     archivo_palabras = open(ruta, 'r', encoding='UTF8')
     palabras = archivo_palabras.read().splitlines()
     archivo_palabras.close()
+    
+
+
     return (palabras)
 #--------------------------------------------------
 def options():
@@ -1272,7 +1275,7 @@ def main():
         mode = mode_election()  
 
 
-        if mode == 'easy':
+        if mode == 'easy': #si se preciona easy
             while True:    
                 easy = mode_easy()
 
@@ -1286,31 +1289,31 @@ def main():
                           #entra en track selection
                         base = track_selection()
                         
-                        if base == 'PV_1': #si preciona Previsualization 1
+                        if base == 'PV_0': #si preciona Previsualization 1
                             previsualization_music('data/base_rap_0.mp3')
 
-                        if base == 'PV_2': #si preciona Previsualization 2
+                        if base == 'PV_1': #si preciona Previsualization 2
                             previsualization_music('data/base_rap_1.mp3') 
 
-                        if base == 'PV_3': #si preciona Previsualization 3
+                        if base == 'PV_2': #si preciona Previsualization 3
                             previsualization_music('data/base_rap_2.mp3')
 
-                        if base == 'PV_4': #si preciona Previsualization 2
+                        if base == 'PV_3': #si preciona Previsualization 2
                             previsualization_music('data/base_rap_3.mp3') 
 
-                        if base == 'PV_5': #si preciona Previsualization 3
+                        if base == 'PV_4': #si preciona Previsualization 3
                             previsualization_music('data/base_rap_4.mp3') 
 
-                        if base == 'PV_6': #si preciona Previsualization 3
+                        if base == 'PV_5': #si preciona Previsualization 3
                             previsualization_music('data/base_rap_5.mp3')   
                         #falta la del usuario       
 
 
-                        if base != 'PV_1' and base != 'PV_2' and base != 'PV_3'and base != 'PV_4' and base != 'PV_5'and base != 'PV_6' and base != 'PV_7':
+                        if base != 'PV_0' and base != 'PV_1' and base != 'PV_2' and base != 'PV_3'and base != 'PV_4' and base != 'PV_5'and base != 'PV_6':
                             timer_60_easy(base) #cuando hay una base pone el beat y salen las plabras 
                             break
 
-                if easy == '120': #si preciona la opcion de 1200 
+                if easy == '120': #si preciona la opcion de 120
                     timer_120_easy()
 
                 
