@@ -865,6 +865,9 @@ def track_selection():
 
 
 
+
+
+
     
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de auris cuando se presiona TECLA 1
             if eventos.button == 1:
@@ -993,6 +996,9 @@ def track_selection():
 
 
 
+
+
+
         if eventos.type == pygame.MOUSEBUTTONDOWN:  # cambia el color de base_rap_2 cuando se presiona TECLA 5
             if eventos.button == 1:
                 objetivo = eventos.pos
@@ -1020,6 +1026,10 @@ def track_selection():
                 objetivo = eventos.pos
                 if 860 < objetivo[0] < 910 and 253 < objetivo[1] < 303:
                     return 'PV_5'
+
+
+
+
 
 
 
@@ -1255,9 +1265,11 @@ def load_image(filename, transparent=False):
         return  image
 #--------------------------------------------------
 def main():
+
     menu()
+
     while True:
-        mode = mode_election()
+        mode = mode_election()  
 
 
         if mode == 'easy':
@@ -1270,21 +1282,25 @@ def main():
                 options()
                 
                 if easy == '60': #si preciona la opcion de 60 
-                    while True:
-                       
+                    while True:                      
                           #entra en track selection
                         base = track_selection()
                         
                         if base == 'PV_1': #si preciona Previsualization 1
                             previsualization_music('data/base_rap_0.mp3')
+
                         if base == 'PV_2': #si preciona Previsualization 2
-                            previsualization_music('data/base_rap_1.mp3')   
+                            previsualization_music('data/base_rap_1.mp3') 
+
                         if base == 'PV_3': #si preciona Previsualization 3
                             previsualization_music('data/base_rap_2.mp3')
+
                         if base == 'PV_4': #si preciona Previsualization 2
-                            previsualization_music('data/base_rap_3.mp3')   
+                            previsualization_music('data/base_rap_3.mp3') 
+
                         if base == 'PV_5': #si preciona Previsualization 3
-                            previsualization_music('data/base_rap_4.mp3')    
+                            previsualization_music('data/base_rap_4.mp3') 
+
                         if base == 'PV_6': #si preciona Previsualization 3
                             previsualization_music('data/base_rap_5.mp3')   
                         #falta la del usuario       
