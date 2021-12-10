@@ -294,15 +294,6 @@ def juego(tiempo_palabras):
             continue
         break
 #--------------------------------------------------
-def easy():
-    juego(10)
-#--------------------------------------------------
-def hard():
-    juego(5)
-#--------------------------------------------------
-def xtreme():
-    juego(3)
-#--------------------------------------------------
 def pantalla_back():
     click = False
     font = pygame.font.SysFont("Swis721 Blk BT", 100, True)
@@ -402,24 +393,24 @@ def track_selection():
         PV_border_4 = pygame.Rect(BUTTON_WIDTH+65, 355, 60, 60)
 
         #segundo columna
+        
         button_5 = pygame.Rect(COLUMNA_N2 , 120, BUTTON_WIDTH, BUTTON_HEIGHT)
         button_border_5 = pygame.Rect(COLUMNA_N2  - 5, 115, BORDER_WIDTH, BORDER_HEIGHT)
         PV_border_5 = pygame.Rect(COLUMNA_N2 + BUTTON_WIDTH + 15, 115, 60, 60)
 
+        button_6 = pygame.Rect(COLUMNA_N2 , 200, BUTTON_WIDTH, BUTTON_HEIGHT)
+        button_border_6 = pygame.Rect(COLUMNA_N2  - 5, 195, BORDER_WIDTH, BORDER_HEIGHT)
+        PV_border_6 = pygame.Rect(COLUMNA_N2 + BUTTON_WIDTH + 15, 195, 60, 60)
 
-        button_6 = pygame.Rect(50, 200, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_6 = pygame.Rect(45, 195, BORDER_WIDTH, BORDER_HEIGHT)
-        PV_border_6 = pygame.Rect(BUTTON_WIDTH+65, 195, 60, 60)
+        button_7 = pygame.Rect(COLUMNA_N2 , 280, BUTTON_WIDTH, BUTTON_HEIGHT)
+        button_border_7 = pygame.Rect(COLUMNA_N2  - 5, 275, BORDER_WIDTH, BORDER_HEIGHT)
+        PV_border_7 = pygame.Rect(COLUMNA_N2 + BUTTON_WIDTH + 15, 275, 60, 60)
 
-        button_7 = pygame.Rect(50, 280, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_7 = pygame.Rect(45, 275, BORDER_WIDTH, BORDER_HEIGHT)
-        PV_border_7 = pygame.Rect(BUTTON_WIDTH+65, 275, 60, 60)
+        button_8 = pygame.Rect(COLUMNA_N2 , 360, BUTTON_WIDTH, BUTTON_HEIGHT)
+        button_border_8 = pygame.Rect(COLUMNA_N2  - 5, 355, BORDER_WIDTH, BORDER_HEIGHT)
+        PV_border_8 = pygame.Rect(COLUMNA_N2 + BUTTON_WIDTH + 15, 355, 60, 60)
 
 
-        button_8 = pygame.Rect(50, 360, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_8 = pygame.Rect(45, 355, BORDER_WIDTH, BORDER_HEIGHT)
-        PV_border_8 = pygame.Rect(BUTTON_WIDTH+65, 355, 60, 60)
-        
         
 
 
@@ -529,9 +520,34 @@ def track_selection():
 
         pygame.draw.rect(screen, (247, 236, 191), button_border_5) 
         pygame.draw.rect(screen, (32, 51, 73), button_5)
-        draw_text('Sin Base', font, (247, 236, 191), screen, 510, 133)
+        draw_text('Base de freestyle n°5', font, (247, 236, 191), screen, 510, 133)
         pygame.draw.rect(screen, (247, 236, 191), PV_border_5) 
         screen.blit(PV_IMG,(800+70,120))
+
+
+        pygame.draw.rect(screen, (247, 236, 191), button_border_6) 
+        pygame.draw.rect(screen, (32, 51, 73), button_6)
+        draw_text('Base de freestyle n°6', font, (247, 236, 191), screen, 510, 213)
+        pygame.draw.rect(screen, (247, 236, 191), PV_border_6) 
+        screen.blit(PV_IMG,(800+70,200))
+
+
+
+
+        pygame.draw.rect(screen, (247, 236, 191), button_border_7) 
+        pygame.draw.rect(screen, (32, 51, 73), button_7)
+        draw_text('Base de freestyle n°7', font, (247, 236, 191), screen, 510, 293)
+        pygame.draw.rect(screen, (247, 236, 191), PV_border_7) 
+        screen.blit(PV_IMG,(800+70,280))
+
+
+
+ 
+        pygame.draw.rect(screen, (247, 236, 191), button_border_8) 
+        pygame.draw.rect(screen, (32, 51, 73), button_8)
+        draw_text('SIN BASE', font, (247, 236, 191), screen, 510, 373)
+        pygame.draw.rect(screen, (247, 236, 191), PV_border_8) 
+        screen.blit(PV_IMG,(800+70,360))
         
         
 
@@ -642,17 +658,17 @@ def main():
         nivel = selector_de_niveles()
 
         if(nivel == "easy"):
-            easy()
+            juego(10)
             pantalla_back()
         
         if(nivel == "hard"):
-            hard()
+            juego(5)
             pantalla_back()
         
         if(nivel == "xtreme"):
-            xtreme()
+            juego(3)
             pantalla_back()
-
+#--------------------------------------------------
 
         
 
