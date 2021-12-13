@@ -1,4 +1,3 @@
-from io import StringIO
 import sys, pygame
 from pygame.locals import *
 from random import randint
@@ -18,26 +17,37 @@ font = pygame.font.SysFont(None, 40)
 
 
 
-
-
-
-
-
-
 #--------------------------------------------------
 def music(path):
     pygame.mixer.music.load(path)
-
-    if (path == 'data/base_rap_1.mp3'):
-        pygame.mixer.music.play(loops=0, start=9.0)
-
-    if (path != 'data/base_rap_0.mp3'):
-        pygame.mixer.music.play(loops=0, start=10.0)
-
-    if (path == 'data/base_rap_0.mp3'):
-        pygame.mixer.music.play()
-
+    pygame.mixer.music.play(loops=0)
     return
+#--------------------------------------------------
+def start_time(base):
+    
+    if (base == 'data/base_rap_1.mp3'):
+        return(1)
+
+    if (base == 'data/base_rap_2.mp3'):
+        return(10)
+    
+    if (base == 'data/base_rap_3.mp3'):
+        return(10)
+
+    if (base == 'data/base_rap_4.mp3'):
+        return(31)
+
+    if (base == 'data/base_rap_5.mp3'):
+        return(12)
+
+    if (base == 'data/base_rap_6.mp3'):
+        return(14)
+    
+    if (base == 'data/base_rap_7.mp3'):
+        return(14)  
+
+    if (base == 'libre'):
+        return(0)  
 #--------------------------------------------------
 def previsualization_music(path):
 
@@ -201,19 +211,23 @@ def selector_de_niveles():
         pygame.display.update()
         mainClock.tick(60)
 #--------------------------------------------------
-def juego(tiempo_palabras):
+def juego(tiempo_palabras,base):
 
+    tiempo_start = start_time(base)
+
+    timer = 61 + tiempo_start
     
 
-    word_box = pygame.Rect(170, 390, 620, 90)
-    word_box_border = pygame.Rect(160, 380, 640, 110)
+    word_box = pygame.Rect(170, 390, 620, 90)                                           #definicion de rectangulo (posicion en x, posicion en y, largo, alto)
+    word_box_border = pygame.Rect(160, 380, 640, 110)                                   #definicion de rectangulo (posicion en x, posicion en y, largo, alto)
 
     background_image = load_image('data/fondo_rojo.png')
     screen.blit(background_image,(0,0))
 
     clock = pygame.time.Clock()
 
-    counter, text = 61, '61'.rjust(3)
+
+    counter, text = timer, str(timer).rjust(3)                                                   #arrancamos el timer en 61 segundos 
 
     pygame.time.set_timer(pygame.USEREVENT, 1000)
 
@@ -226,9 +240,9 @@ def juego(tiempo_palabras):
     
     x_centrada = 250
 
-    base = track_selection()
+                                                             
 
-    if base != 'libre':
+    if base != 'libre':                                                                  #nos fijamos si se eligio una base o si va a ser libre                               
         music(base)
 
     tiempo = True
@@ -244,7 +258,7 @@ def juego(tiempo_palabras):
                 sys.exit(0)
 
 
-            if counter % tiempo_palabras == 1:
+            if counter % tiempo_palabras == 1:                                      #un segundo antes de mostrar la palabra se se genera un num random entre 0 y 1212 
                 rannum = randint(0, 1212)
 
             if e.type == pygame.USEREVENT and tiempo == True:
@@ -253,7 +267,7 @@ def juego(tiempo_palabras):
                 if counter == 0:
                     tiempo = False
      
-            if counter % tiempo_palabras == 0:
+            if counter % tiempo_palabras == 0 and counter <= 60:                                      
                 x_centrada = 480 - (((len(palabras[rannum])) / 2) * 40)
                 palabras_text = palabras[rannum].capitalize()
 
@@ -298,9 +312,6 @@ def pantalla_back():
     click = False
     font = pygame.font.SysFont("Swis721 Blk BT", 100, True)
 
-    word_box = pygame.Rect(170, 390, 620, 90)
-    word_box_border = pygame.Rect(160, 380, 640, 110)
-
     button_exit =  pygame.Rect(395, 145, 168, 168)
 
     while True:
@@ -314,17 +325,14 @@ def pantalla_back():
 
         if button_exit.collidepoint((mx, my)):
             if click:
+                pygame.mixer.music.stop()
                 return
 
         
-
-
         pygame.draw.circle(screen, (247, 236, 191), (480, 230), 130, 0)
         pygame.draw.circle(screen,(32, 51, 73),(480,230),120, 0)
         pygame.draw.rect(screen, (32, 51, 73), button_exit)
         draw_text('BACK', font, (247, 236, 191), screen, 365, 200)
-
-       
 
         click = False
         
@@ -368,91 +376,128 @@ def track_selection():
 
         mx, my = pygame.mouse.get_pos() 
 
-        
+
+        #DEFINICIONES
+
+        #TITULO
 
         Track_selection = pygame.Rect(COLUMNA_N1, 30, BUTTON_WIDTH, BUTTON_HEIGHT)
         Track_selection_border = pygame.Rect(COLUMNA_N1 - 5, 25, BORDER_WIDTH, BORDER_HEIGHT)
 
-        #primer columna
-        button_1 = pygame.Rect(COLUMNA_N1, 120, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_1 = pygame.Rect(COLUMNA_N1 - 5, 115, BORDER_WIDTH, BORDER_HEIGHT)
+        #PRIMERA COLUMNA
+
+        button_1 = pygame.Rect(COLUMNA_N1, 120, BUTTON_WIDTH, BUTTON_HEIGHT)                 #definicion de botones (posicion en x, posicion en y, ancho, alto)
+        button_border_1 = pygame.Rect(COLUMNA_N1 - 5, 115, BORDER_WIDTH, BORDER_HEIGHT)      #definicion de bordes (posicion en x, posicion en y, ancho, alto)
         PV_border_1 = pygame.Rect(BUTTON_WIDTH+65, 115, 60, 60)
 
 
-        button_2 = pygame.Rect(COLUMNA_N1, 200, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_2 = pygame.Rect(COLUMNA_N1 - 5, 195, BORDER_WIDTH, BORDER_HEIGHT)
+        button_2 = pygame.Rect(COLUMNA_N1, 200, BUTTON_WIDTH, BUTTON_HEIGHT)                 #definicion de botones (posicion en x, posicion en y, ancho, alto)
+        button_border_2 = pygame.Rect(COLUMNA_N1 - 5, 195, BORDER_WIDTH, BORDER_HEIGHT)      #definicion de bordes (posicion en x, posicion en y, ancho, alto)
         PV_border_2 = pygame.Rect(BUTTON_WIDTH+65, 195, 60, 60)
 
-        button_3 = pygame.Rect(COLUMNA_N1, 280, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_3 = pygame.Rect(COLUMNA_N1 - 5, 275, BORDER_WIDTH, BORDER_HEIGHT)
+        button_3 = pygame.Rect(COLUMNA_N1, 280, BUTTON_WIDTH, BUTTON_HEIGHT)                 #definicion de botones (posicion en x, posicion en y, ancho, alto)
+        button_border_3 = pygame.Rect(COLUMNA_N1 - 5, 275, BORDER_WIDTH, BORDER_HEIGHT)      #definicion de bordes (posicion en x, posicion en y, ancho, alto)
         PV_border_3 = pygame.Rect(BUTTON_WIDTH+65, 275, 60, 60)
 
 
-        button_4 = pygame.Rect(COLUMNA_N1, 360, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_4 = pygame.Rect(COLUMNA_N1 - 5, 355, BORDER_WIDTH, BORDER_HEIGHT)
+        button_4 = pygame.Rect(COLUMNA_N1, 360, BUTTON_WIDTH, BUTTON_HEIGHT)                 #definicion de botones (posicion en x, posicion en y, ancho, alto)
+        button_border_4 = pygame.Rect(COLUMNA_N1 - 5, 355, BORDER_WIDTH, BORDER_HEIGHT)      #definicion de bordes (posicion en x, posicion en y, ancho, alto)
         PV_border_4 = pygame.Rect(BUTTON_WIDTH+65, 355, 60, 60)
 
-        #segundo columna
+        #SEGUNDA COLUMNA 
         
-        button_5 = pygame.Rect(COLUMNA_N2 , 120, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_5 = pygame.Rect(COLUMNA_N2  - 5, 115, BORDER_WIDTH, BORDER_HEIGHT)
+        button_5 = pygame.Rect(COLUMNA_N2 , 120, BUTTON_WIDTH, BUTTON_HEIGHT)                 #definicion de botones (posicion en x, posicion en y, ancho, alto)
+        button_border_5 = pygame.Rect(COLUMNA_N2  - 5, 115, BORDER_WIDTH, BORDER_HEIGHT)      #definicion de bordes (posicion en x, posicion en y, ancho, alto)
         PV_border_5 = pygame.Rect(COLUMNA_N2 + BUTTON_WIDTH + 15, 115, 60, 60)
 
-        button_6 = pygame.Rect(COLUMNA_N2 , 200, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_6 = pygame.Rect(COLUMNA_N2  - 5, 195, BORDER_WIDTH, BORDER_HEIGHT)
+        button_6 = pygame.Rect(COLUMNA_N2 , 200, BUTTON_WIDTH, BUTTON_HEIGHT)                 #definicion de botones (posicion en x, posicion en y, ancho, alto)
+        button_border_6 = pygame.Rect(COLUMNA_N2  - 5, 195, BORDER_WIDTH, BORDER_HEIGHT)      #definicion de bordes (posicion en x, posicion en y, ancho, alto)
         PV_border_6 = pygame.Rect(COLUMNA_N2 + BUTTON_WIDTH + 15, 195, 60, 60)
 
-        button_7 = pygame.Rect(COLUMNA_N2 , 280, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_7 = pygame.Rect(COLUMNA_N2  - 5, 275, BORDER_WIDTH, BORDER_HEIGHT)
+        button_7 = pygame.Rect(COLUMNA_N2 , 280, BUTTON_WIDTH, BUTTON_HEIGHT)                 #definicion de botones (posicion en x, posicion en y, ancho, alto)
+        button_border_7 = pygame.Rect(COLUMNA_N2  - 5, 275, BORDER_WIDTH, BORDER_HEIGHT)      #definicion de bordes (posicion en x, posicion en y, ancho, alto)
         PV_border_7 = pygame.Rect(COLUMNA_N2 + BUTTON_WIDTH + 15, 275, 60, 60)
 
-        button_8 = pygame.Rect(COLUMNA_N2 , 360, BUTTON_WIDTH, BUTTON_HEIGHT)
-        button_border_8 = pygame.Rect(COLUMNA_N2  - 5, 355, BORDER_WIDTH, BORDER_HEIGHT)
+        button_8 = pygame.Rect(COLUMNA_N2 , 360, BUTTON_WIDTH, BUTTON_HEIGHT)                 #definicion de botones (posicion en x, posicion en y, ancho, alto)
+        button_border_8 = pygame.Rect(COLUMNA_N2  - 5, 355, BORDER_WIDTH, BORDER_HEIGHT)      #definicion de bordes (posicion en x, posicion en y, ancho, alto)
         PV_border_8 = pygame.Rect(COLUMNA_N2 + BUTTON_WIDTH + 15, 355, 60, 60)
 
 
         
 
 
+        #TESTEO DE BOTONES
 
-        if button_1.collidepoint((mx, my)):
+        #PRIMERA COLUMNA
+
+        if button_1.collidepoint((mx, my)):                                                   #testeo si hubo un clic en el button1
             if click:
                 return('data/base_rap_1.mp3')
 
-        if PV_border_1.collidepoint((mx, my)):
+        if PV_border_1.collidepoint((mx, my)):                                               #testeo si hubo un clic en el botón de previsualizacion 1                      
             if click:
                 previsualization_music('data/base_rap_1.mp3')
 
 
-        if button_2.collidepoint((mx, my)):
+        if button_2.collidepoint((mx, my)):                                                   #testeo si hubo un clic en el button2
             if click:
                 return('data/base_rap_2.mp3')
 
-        if PV_border_2.collidepoint((mx, my)):
+        if PV_border_2.collidepoint((mx, my)):                                               #testeo si hubo un clic en el botón de previsualizacion 2    
             if click:
                 previsualization_music('data/base_rap_2.mp3')
 
 
-        if button_3.collidepoint((mx, my)):
+        if button_3.collidepoint((mx, my)):                                                   #testeo si hubo un clic en el button3
             if click:
                 return('data/base_rap_3.mp3')
 
-        if PV_border_3.collidepoint((mx, my)):
+        if PV_border_3.collidepoint((mx, my)):                                               #testeo si hubo un clic en el botón de previsualizacion 3  
             if click:
                 previsualization_music('data/base_rap_3.mp3')
 
 
-        if button_4.collidepoint((mx, my)):
+        if button_4.collidepoint((mx, my)):                                                   #testeo si hubo un clic en el button4
             if click:
                 return('data/base_rap_4.mp3')
 
-        if PV_border_4.collidepoint((mx, my)):
+        if PV_border_4.collidepoint((mx, my)):                                               #testeo si hubo un clic en el botón de previsualizacion 4    
             if click:
                 previsualization_music('data/base_rap_4.mp3')
 
 
 
-        if button_5.collidepoint((mx, my)):
+        #SEGUNDA COLUMNA
+
+
+        if button_5.collidepoint((mx, my)):                                                   #testeo si hubo un clic en el button1
+            if click:
+                return('data/base_rap_5.mp3')
+
+        if PV_border_5.collidepoint((mx, my)):                                               #testeo si hubo un clic en el botón de previsualizacion 1                      
+            if click:
+                previsualization_music('data/base_rap_5.mp3')
+
+
+        if button_6.collidepoint((mx, my)):                                                   #testeo si hubo un clic en el button2
+            if click:
+                return('data/base_rap_6.mp3')
+
+        if PV_border_6.collidepoint((mx, my)):                                               #testeo si hubo un clic en el botón de previsualizacion 2    
+            if click:
+                previsualization_music('data/base_rap_6.mp3')
+
+
+        if button_7.collidepoint((mx, my)):                                                   #testeo si hubo un clic en el button3
+            if click:
+                return('data/base_rap_7.mp3')
+
+        if PV_border_7.collidepoint((mx, my)):                                               #testeo si hubo un clic en el botón de previsualizacion 3  
+            if click:
+                previsualization_music('data/base_rap_7.mp3')
+
+
+        if button_8.collidepoint((mx, my)):                                                   #testeo si hubo un clic en el button4
             if click:
                 return('libre')
 
@@ -461,15 +506,9 @@ def track_selection():
 
 
 
+        #PARTE SHOW
 
-
-
-
-
-
-
-
-        #primera columna 
+        #PRIMERA COLUMNA
 
 
        
@@ -516,7 +555,7 @@ def track_selection():
 
 
 
-        #segunda columna 
+        #SEGUUNDA COLUMNA
 
         pygame.draw.rect(screen, (247, 236, 191), button_border_5) 
         pygame.draw.rect(screen, (32, 51, 73), button_5)
@@ -564,8 +603,7 @@ def track_selection():
 
             if event.type == KEYDOWN:
                 if event.key == K_ESCAPE:
-                    pygame.quit()
-                    sys.exit()
+                    return
 
             if event.type == MOUSEBUTTONDOWN:
                 if event.button == 1:
@@ -586,11 +624,11 @@ def pantalla_inicio():
 
         mx, my = pygame.mouse.get_pos() 
  
-        button_1 = pygame.Rect(180, 480, 200, 50)
-        button_border_1 = pygame.Rect(175, 475, 210, 60)
+        button_1 = pygame.Rect(180, 480, 200, 50)                    #definicion de button (posicion en x, posicion en y, ancho, alto)   
+        button_border_1 = pygame.Rect(175, 475, 210, 60)             #definicion de bordes (posicion en x, posicion en y, ancho, alto)
 
-        button_2 = pygame.Rect(580, 480, 200, 50)
-        button_border_2 = pygame.Rect(575, 475, 210, 60)
+        button_2 = pygame.Rect(580, 480, 200, 50)                    #definicion de button (posicion en x, posicion en y, ancho, alto) 
+        button_border_2 = pygame.Rect(575, 475, 210, 60)             #definicion de bordes (posicion en x, posicion en y, ancho, alto)
 
         if button_1.collidepoint((mx, my)):
             if click:
@@ -602,7 +640,7 @@ def pantalla_inicio():
                 return
 
        
-        pygame.draw.rect(screen, (247, 236, 191), button_border_1) 
+        pygame.draw.rect(screen, (247, 236, 191), button_border_1)   
         pygame.draw.rect(screen, (32, 51, 73), button_1)
         draw_text('SALIR', font, (247, 236, 191), screen, 235, 490)
 
@@ -658,23 +696,27 @@ def main():
         nivel = selector_de_niveles()
 
         if(nivel == "easy"):
-            juego(10)
-            pantalla_back()
+            base = track_selection()    
+            if base:
+                juego(10,base)
+                pantalla_back()
         
         if(nivel == "hard"):
-            juego(5)
-            pantalla_back()
+            base = track_selection()   
+            if base: 
+                juego(5,base)
+                pantalla_back()
         
         if(nivel == "xtreme"):
-            juego(3)
-            pantalla_back()
+            base = track_selection()    
+            if base:
+                juego(3,base)
+                pantalla_back()          
 #--------------------------------------------------
 
-        
 
 
 #--------------------------------------------------
 if __name__ == '__main__':
     pygame.init()
     main()  
-
